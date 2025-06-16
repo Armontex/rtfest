@@ -17,12 +17,12 @@ export default {
         <li class="header__item">
           <a href="/" class="header__link">Главная страница</a>
         </li>
-        <li class="header__item">
+        <!-- <li class="header__item">
           <a href="/about-us" class="header__link">О нас</a>
-        </li>
+        </li> -->
         <li class="header__item">
-          <a href="/events" class="header__link">Мероприятия</a>
-          <IconArrow direction="down" fill="#65B2DA"/>
+          <a href="/events" class="header__link highlight-text bold">Мероприятия</a>
+          <!-- <IconArrow direction="down" fill="#65B2DA"/> -->
         </li>
       </ul>
     </nav>
@@ -37,6 +37,45 @@ export default {
 </style>
 
 <style scoped>
+/* .logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  height: 25px;
+  width: 25px;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.7rem;
+  align-items: center;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__list {
+  display: flex;
+  gap: 1rem;
+}
+
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+}
+
+@media (min-width: 1024px) {
+
+} */
 .header__wrapper {
   position: relative;
   display: flex;
@@ -88,5 +127,9 @@ export default {
 
 .header__link:hover::after {
   width: 100%;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+  
 }
 </style>

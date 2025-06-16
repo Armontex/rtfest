@@ -22,12 +22,12 @@ export default {
 
 <template>
   <HeroSection />
-  <FuncsSections />
+  <!-- <FuncsSections /> -->
   <AdvantagesSection />
-  <WorkflowSection />
-  <FAQSection />
-  <ContactsSection />
-  <STASection />
+  <!-- <WorkflowSection /> -->
+  <!-- <FAQSection /> -->
+  <!-- <ContactsSection /> -->
+  <!-- <STASection /> -->
 </template>
 
 <style scoped></style>

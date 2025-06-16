@@ -27,7 +27,6 @@
 </template>
 
 <script>
-// import noneImage from '@/assets/images/none.png'
 import IconLocation from './icons/IconLocation.vue'
 import IconCalendarSmall from './icons/IconCalendar-small.vue'
 import IconArrow from './icons/IconArrow.vue'
@@ -35,7 +34,6 @@ import IconWatches from './icons/IconWatches.vue'
 
 export default {
   components: {
-    // noneImage,
     IconLocation,
     IconCalendarSmall,
     IconArrow,
@@ -48,11 +46,7 @@ export default {
     date: { type: String, required: true },
     time: { type: String, required: true },
     location: { type: String, required: true },
-  },
-  data() {
-    return {
-      // noneImage,
-    }
+    // link: { type: String, required: true },
   },
 }
 </script>
@@ -61,7 +55,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 
 :root {
-  --font3: "Open Sans", sans-serif;
+  --font3: 'Open Sans', sans-serif;
 }
 </style>
 
@@ -135,7 +129,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* gap: 5px; */
   font-family: var(--font3);
   font-weight: 700;
   font-size: 10px;

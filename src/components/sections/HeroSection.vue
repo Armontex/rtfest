@@ -55,20 +55,19 @@ export default {
 .hero__descr {
   font-size: 20px;
 }
-
-/* .hero__media {
-  width: 100%;
-  height: 640px;
-} */
  
 .hero__buttons {
   display: flex;
   gap: 1rem;
 }
 
-/* .hero__image {
-  border-radius: 55px;
-  min-width: 767px;
-  height: 640px;
-} */
+@media (min-width: 320px) and (max-width: 768px) {
+  .hero__descr {
+    font-size: var(--fsize-base);
+  }
+  
+  .hero__wrapper {
+    flex-direction: column;
+  }
+}
 </style>
