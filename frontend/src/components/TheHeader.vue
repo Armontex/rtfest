@@ -37,7 +37,7 @@ export default {
 </style>
 
 <style scoped>
-/* .logo-link {
+.logo-link {
   display: flex;
   align-items: center;
 }
@@ -66,49 +66,26 @@ export default {
 
 
 @media (min-width: 768px) {
+  .header__wrapper {
+    position: relative;
+    justify-content: start;
+    margin-top: 25px;
+  }
   
+  .logo-icon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: 50px;
+  }
+
+  .header__list {
+    gap: 2rem;
+  }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-
-}
-
-@media (min-width: 1024px) {
-
-} */
-.header__wrapper {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 0.7rem;
-  height: var(--logo-height);
-}
-
-.header__nav {
-  align-self: center;
-}
-
-.header__list {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.header__item:last-child {
-  display: flex;
-  gap: 10px;
-}
-
-.logo-icon {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  height: var(--logo-height);
-}
-
-.header__link {
-  position: relative;
-}
+/*
 
 .header__link:hover {
   color: var(--main-color);
@@ -128,8 +105,5 @@ export default {
 .header__link:hover::after {
   width: 100%;
 }
-
-@media (min-width: 320px) and (max-width: 768px) {
-  
-}
+*/
 </style>

@@ -2,12 +2,12 @@
   <header>
     <TheHeader />
   </header>
-  <main id="main">
+  <!-- <main id="main">
     <router-view />
-  </main>
-  <footer>
+  </main> -->
+  <!-- <footer>
     <TheFooter />
-  </footer>
+  </footer> -->
 </template>
 
 <script>
