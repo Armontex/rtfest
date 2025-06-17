@@ -3,14 +3,14 @@
     <div class="footer__content">
       <div class="footer__header">
         <h4 class="footer__title">Подпишитесь на&nbsp;новости</h4>
-        <div class="footer__descr">
+        <p class="footer__descr">
           Получайте обновления о&nbsp;наших мероприятиях и&nbsp;акциях.
-        </div>
+        </p>
       </div>
       <div class="footer__form">
         <div class="footer__form-wrapper">
-          <EmailInput />
-          <DarkButton text="Подписаться" />
+          <EmailInput class="email-input" />
+          <DarkButton class="form-btn" text="Подписаться" />
         </div>
         <p class="footer__form-descr">
           Подписываясь, вы&nbsp;соглашаетесь с&nbsp;нашей Политикой конфиденциальности.
@@ -44,17 +44,22 @@ export default {
 .footer__wrapper {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+
+  gap: 1.5rem;
+
+  font-family: var(--second-family);
 }
 
 .footer__content {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .footer__header {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .footer__title {
@@ -62,32 +67,70 @@ export default {
   font-weight: var(--semi-bold);
 }
 
+.footer__descr {
+  font-size: 16px;
+}
+
 .footer__form {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
 }
 
 .footer__form-wrapper {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  gap: 10px;
 }
 
-.footer__form-descr {
-  font-size: 12px;
+.email-input {
+  flex: 1;
+}
+
+.form-btn {
+  flex: 1;
 }
 
 .footer__under {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .footer__logo {
-  height: 80px;
+  height: 40px;
+  width: 40px;
 }
 
 .footer__copy {
   font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  .footer__wrapper {
+    gap: 3rem;
+  }
+  .footer__content {
+    flex-direction: row;
+  }
+
+  .footer__form {
+    font-size: 16px;
+    gap: 5px;
+  }
+
+  .footer__form-descr {
+    font-size: 12px;
+  }
+
+  .footer__under {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer__logo {
+    height: 70px;
+    width: 70px;
+  }
 }
 </style>

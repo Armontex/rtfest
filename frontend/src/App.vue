@@ -5,9 +5,9 @@
   <!-- <main id="main">
     <router-view />
   </main> -->
-  <!-- <footer>
+  <footer>
     <TheFooter />
-  </footer> -->
+  </footer>
 </template>
 
 <script>
