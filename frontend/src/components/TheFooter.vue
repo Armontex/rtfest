@@ -111,6 +111,7 @@ export default {
   }
   .footer__content {
     flex-direction: row;
+    justify-content: space-between;
   }
 
   .footer__form {
