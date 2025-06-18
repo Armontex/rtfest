@@ -2,9 +2,9 @@
   <header>
     <TheHeader />
   </header>
-  <!-- <main id="main">
+  <main id="main">
     <router-view />
-  </main> -->
+  </main>
   <footer>
     <TheFooter />
   </footer>

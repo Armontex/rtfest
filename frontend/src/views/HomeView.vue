@@ -23,7 +23,7 @@ export default {
 <template>
   <HeroSection />
   <!-- <FuncsSections /> -->
-  <AdvantagesSection />
+  <!-- <AdvantagesSection /> -->
   <!-- <WorkflowSection /> -->
   <!-- <FAQSection /> -->
   <!-- <ContactsSection /> -->

@@ -11,8 +11,8 @@
           интуитивно понятной платформой.
         </p>
         <div class="hero__buttons">
-          <DarkButton text="Узнать больше" href="#faq" />
-          <LightButton text="Начать" />
+          <LightButton class="hero-btn" text="Узнать больше" href="#faq" />
+          <DarkButton class="hero-btn" text="Начать" />
         </div>
       </div>
       <img :src="HeroImage" alt="" class="hero__image" />
@@ -42,32 +42,76 @@ export default {
 <style scoped>
 .hero__wrapper {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 50px;
+  margin-top: 20px;
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
+  gap: 30px;
+  font-size: 16px;
 }
 
-.hero__descr {
-  font-size: 20px;
+.hero__title {
+  font-size: 30px;
+  text-align: center;
 }
- 
+
 .hero__buttons {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-@media (min-width: 320px) and (max-width: 768px) {
-  .hero__descr {
-    font-size: var(--fsize-base);
-  }
-  
+.hero-btn {
+  flex: 1;
+}
+
+@media (min-width: 768px) {
   .hero__wrapper {
-    flex-direction: column;
+    margin-top: var(--wrapper-margin);
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hero__content {
+
+  }
+
+  .hero__title {
+    text-align: start;
+    font-size: 32px;
+  }
+
+  .hero__image {
+    width: 50vw;
+    height: auto;
+  }
+
+  .hero__buttons {
+    justify-content: start;
+  }
+
+  .hero-btn {
+    flex: unset;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__title {
+    font-size: 42px;
+  }
+
+  .hero__descr {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero__title {
+    font-size: 56px;
   }
 }
 </style>
