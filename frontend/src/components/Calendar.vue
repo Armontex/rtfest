@@ -3,7 +3,7 @@
     <div class="header">
       <div class="header__content">
         <button @click="prevMonth">
-          <IconArrow direction="right" fill="#fff"/>
+          <IconArrow direction="left" fill="#fff"/>
         </button>
         <h2>{{ monthYear }}</h2>
         <button @click="nextMonth">

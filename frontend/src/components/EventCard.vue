@@ -21,7 +21,7 @@
     </div>
     <div class="event-card__btn">
       <a :href="'/event/' + id" class="event-card__btn-link">Подробнее</a>
-      <IconArrow direction="down" class="event-card__btn-icon" />
+      <IconArrow fill="#65b2da" direction="down" class="event-card__btn-icon" />
     </div>
   </div>
 </template>

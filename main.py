@@ -76,7 +76,7 @@ class EventDetailSchema(BaseModel):
 FILTERS = [
     "cinema", "victorins", "computer_games", "quests", "master_class",
     "music", "board_games", "picnics", "sport",
-    "dances", "stand-up_evenings", "festivals"
+    "dances", "standup", "festivals"
 ]
 
 @app.post("/setup_database")

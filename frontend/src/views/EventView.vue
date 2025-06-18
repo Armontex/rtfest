@@ -2,8 +2,16 @@
   <main>
     <div class="event__wrapper container">
       <div class="event__components">
-        <EventFilter />
-        <Event
+        <!-- <EventFilter /> -->
+        <EventMobile class="mobile"
+          :type="event.type"
+          :cover="event.cover"
+          :title="event.title"
+          :time="event.time"
+          :descr="event.descr"
+          :location="event.location"
+        />
+        <EventDesktop class="desktop"
           :type="event.type"
           :cover="event.cover"
           :title="event.title"
@@ -17,8 +25,8 @@
 </template>
 
 <script>
-import E1 from '@/assets/images/e1.png'
-import Event from '@/components/Event.vue'
+import EventMobile from '@/components/EventMobile.vue'
+import EventDesktop from '@/components/EventDesktop.vue'
 import EventFilter from '@/components/EventFilter.vue'
 
 import { ref, onMounted } from 'vue'
@@ -29,8 +37,9 @@ const API_BASE_URL = 'http://localhost:8000'
 export default {
   name: 'EventView',
   components: {
-    Event,
+    EventMobile,
     EventFilter,
+    EventDesktop
   },
   props: {
     id: {
@@ -64,11 +73,31 @@ export default {
 </script>
 
 <style scoped>
+.desktop {
+  display: none;
+}
+
 .event__wrapper {
   margin-top: 70px;
 }
 .event__components {
   display: flex;
-  gap: 45px;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+@media (min-width: 1024px) {
+  .desktop {
+    display: flex;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  .event__components {
+    align-items: start;
+  }
 }
 </style>

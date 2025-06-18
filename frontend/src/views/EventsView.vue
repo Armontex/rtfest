@@ -2,9 +2,10 @@
   <main>
     <div class="events__wrapper container">
       <div class="events__components">
-        <EventFilter />
+        <EventFilter @filter-change="fetchEvents"/>
         <div class="events__cards">
           <EventCard
+            class="event__card"
             v-for="event in events"
             :id="event.id"
             :type="event.type"
@@ -21,13 +22,6 @@
 </template>
 
 <script>
-import E1 from '@/assets/images/e1.png'
-import E2 from '@/assets/images/e2.png'
-import E3 from '@/assets/images/e3.png'
-import E4 from '@/assets/images/e4.png'
-import E5 from '@/assets/images/e5.png'
-import E6 from '@/assets/images/e6.png'
-
 import EventCard from '@/components/EventCard.vue'
 import EventFilter from '@/components/EventFilter.vue'
 import { ref, onMounted } from 'vue'
@@ -43,22 +37,51 @@ export default {
   },
   setup() {
     const events = ref([])
+    const activeFilters = ref({})
 
-    const fetchEvents = async () => {
+    const buildQueryParams = (filters) => {
+      const params = new URLSearchParams()
+      
+      if (filters.all) {
+        return params
+      }
+      
+      for (const [key, value] of Object.entries(filters)) {
+        if (value && key !== 'all') {
+          params.append('types', key)
+        }
+      }
+      
+      return params
+    }
+
+    const fetchEvents = async (filters = {}) => {
       try {
-        const response = await axios.get(`${API_BASE_URL}/events`);
-        events.value = response.data;
-        console.log('Мероприятия загружены:', events.value);
+        const params = buildQueryParams(filters)
+        let url = `${API_BASE_URL}/events`
+        
+        if (params.toString()) {
+          url += `?${params.toString()}`
+          window.history.pushState({}, '', `?${params.toString()}`)
+        } else {
+          window.history.pushState({}, '', window.location.pathname)
+        }
+        
+        const response = await axios.get(url)
+        events.value = response.data
+        console.log('Мероприятия загружены:', events.value)
       } catch (error) {
         console.error('Ошибка при загрузке мероприятий:', error)
       }
     }
+
     onMounted(() => {
       fetchEvents()
     })
 
     return {
       events,
+      fetchEvents
     }
   },
 }
@@ -68,21 +91,30 @@ export default {
 .events__wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin-bottom: 150px;
   margin-top: 65px;
-  min-height: 950px;
+  min-height: max-content;
 }
 
 .events__components {
   display: flex;
-  gap: 22px;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
 }
 
 .events__cards {
-  margin-left: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 43px 50px;
+  grid-template-columns: repeat(auto-fit, minmax(min(275px, 100%), 1fr));
+  width: 100%;
+  justify-items: center;
+  gap: 30px;
+}
+
+@media (min-width: 950px) {
+  .events__components {
+    flex-direction: row;
+    align-items: start;
+  }
 }
 </style>

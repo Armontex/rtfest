@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-    <p class="event__descr">{{ descr }}</p>
+    <p class="event__descr" v-html="formatDescription(descr)"></p>
   </div>
 </template>
 
@@ -38,13 +38,19 @@ export default {
     location: { type: String, required: true },
     descr: { type: String, default: '' },
   },
+  methods: {
+    formatDescription(text) {
+      if (!text) return '';
+      return text.split('\\n').join('<br>');
+    }
+  }
 }
 </script>
 
 <style scoped>
 .icon {
-  width: 51px;
-  height: 51px;
+  width: 50px;
+  height: auto;
 }
 .event {
   display: flex;

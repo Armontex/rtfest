@@ -14,20 +14,43 @@ export default {
       selectedCategories: {
         all: true,
         cinema: false,
-        quizzes: false,
-        pcGames: false,
+        victorins: false,
+        computer_games: false,
         quests: false,
-        mClasses: false,
+        master_class: false,
         music: false,
-        puzzles: false,
+        board_games: false,
         picnics: false,
         sport: false,
-        dancing: false,
+        dances: false,
         stendup: false,
         festivals: false,
       },
     }
   },
+  methods: {
+    handleCategoryChange(category, value) {
+      if (category !== 'all' && value) {
+        this.selectedCategories.all = false;
+      }
+      if (category === 'all' && value) {
+        Object.keys(this.selectedCategories).forEach((key) => {
+          if (key !== 'all') {
+            this.selectedCategories[key] = false;
+          }
+        })
+      }
+      
+      const hasActiveFilters = Object.keys(this.selectedCategories)
+        .some(key => key !== 'all' && this.selectedCategories[key]);
+
+      if (!hasActiveFilters) {
+        this.selectedCategories.all = true;
+      }
+      this.$emit('filter-change', this.selectedCategories);
+    },
+  },
+  emits: ['filter-change']
 }
 </script>
 
@@ -36,30 +59,93 @@ export default {
     <h1 class="event-filter__title">Мероприятия</h1>
     <div class="event-filter__types">
       <div class="event-filter__types-header">
-        <IconFilter2 class="icon-filter"/>
+        <IconFilter2 class="icon-filter" />
         <h2 class="event-filter__types-title">Категории мероприятий</h2>
       </div>
       <div class="event-filter__types-checkboxes">
-        <CheckBox name="all" text="Все" v-model="selectedCategories.all"/>
-        <CheckBox name="cinema" text="Кино" v-model="selectedCategories.cinema"/>
-        <CheckBox name="quizzes" text="Викторины" v-model="selectedCategories.quizzes"/>
-        <CheckBox name="pc-games" text="Компьютерные игры" v-model="selectedCategories.pcGames"/>
-        <CheckBox name="quests" text="Квесты" v-model="selectedCategories.quests"/>
-        <CheckBox name="m-classes" text="Мастер-классы" v-model="selectedCategories.mClasses"/>
-        <CheckBox name="music" text="Музыка" v-model="selectedCategories.music"/>
-        <CheckBox name="puzzles" text="Настолки" v-model="selectedCategories.puzzles"/>
-        <CheckBox name="picnics" text="Пикники" v-model="selectedCategories.picnics"/>
-        <CheckBox name="sport" text="Спорт" v-model="selectedCategories.sport"/>
-        <CheckBox name="dancing" text="Танцы" v-model="selectedCategories.dancing"/>
-        <CheckBox name="stendup" text="Стендап-вечера" v-model="selectedCategories.stendup"/>
-        <CheckBox name="festivals" text="Фестивали" v-model="selectedCategories.festivals"/>
+        <CheckBox
+          name="all"
+          text="Все"
+          v-model="selectedCategories.all"
+          @change="(val) => handleCategoryChange('all', val)"
+        />
+        <CheckBox
+          name="cinema"
+          text="Кино"
+          v-model="selectedCategories.cinema"
+          @change="(val) => handleCategoryChange('cinema', val)"
+        />
+        <CheckBox
+          name="victorins"
+          text="Викторины"
+          v-model="selectedCategories.victorins"
+          @change="(val) => handleCategoryChange('victorins', val)"
+        />
+        <CheckBox
+          name="computer_games"
+          text="Компьютерные игры"
+          v-model="selectedCategories.computer_games"
+          @change="(val) => handleCategoryChange('computer_games', val)"
+        />
+        <CheckBox
+          name="quests"
+          text="Квесты"
+          v-model="selectedCategories.quests"
+          @change="(val) => handleCategoryChange('quests', val)"
+        />
+        <CheckBox
+          name="master_class"
+          text="Мастер-классы"
+          v-model="selectedCategories.master_class"
+          @change="(val) => handleCategoryChange('master_class', val)"
+        />
+        <CheckBox
+          name="music"
+          text="Музыка"
+          v-model="selectedCategories.music"
+          @change="(val) => handleCategoryChange('music', val)"
+        />
+        <CheckBox
+          name="board_games"
+          text="Настолки"
+          v-model="selectedCategories.board_games"
+          @change="(val) => handleCategoryChange('board_games', val)"
+        />
+        <CheckBox
+          name="picnics"
+          text="Пикники"
+          v-model="selectedCategories.picnics"
+          @change="(val) => handleCategoryChange('picnics', val)"
+        />
+        <CheckBox
+          name="sport"
+          text="Спорт"
+          v-model="selectedCategories.sport"
+          @change="(val) => handleCategoryChange('sport', val)"
+        />
+        <CheckBox
+          name="dances"
+          text="Танцы"
+          v-model="selectedCategories.dances"
+          @change="(val) => handleCategoryChange('dances', val)"
+        />
+        <CheckBox
+          name="stendup"
+          text="Стендап-вечера"
+          v-model="selectedCategories.stendup"
+          @change="(val) => handleCategoryChange('stendup', val)"
+        />
+        <CheckBox
+          name="festivals"
+          text="Фестивали"
+          v-model="selectedCategories.festivals"
+          @change="(val) => handleCategoryChange('festivals', val)"
+        />
       </div>
     </div>
     <Calendar class="event-filter__calendar" />
   </div>
 </template>
-
-<style></style>
 
 <style scoped>
 .event-filter {
@@ -68,8 +154,8 @@ export default {
   align-items: center;
   border-radius: 42px;
   padding: 19px 26px;
-  width: 366px;
-  height: 941px;
+  width: 320px;
+  height: 800px;
   background: #f1f1f1;
 }
 
@@ -112,9 +198,5 @@ export default {
 
 .event-filter__calendar {
   margin-top: 40px;
-}
-
-.icon-filter {
-
 }
 </style>
