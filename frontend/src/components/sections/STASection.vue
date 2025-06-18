@@ -11,8 +11,8 @@
         </p>
       </header>
       <div class="sta__buttons">
-        <LightButton text="Начать"/>
-        <DarkButton text="Узнать больше" href="#faq"/>
+        <LightButton text="Начать" />
+        <DarkButton text="Узнать больше" href="#faq" />
       </div>
     </div>
   </section>
@@ -37,25 +37,47 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  align-items: center;
+  text-align: center;
 }
 
 .sta__header {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 60%;
 }
 
 .sta__title {
-  font-size: 48px;
+  font-size: 28px;
 }
 
 .sta__descr {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .sta__buttons {
   display: flex;
   gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .sta__wrapper {
+    align-items: start;
+    text-align: start;
+  }
+
+  .sta__header {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sta__title {
+    font-size: 48px;
+  }
+
+  .sta__descr {
+    font-size: 18px;
+  }
 }
 </style>

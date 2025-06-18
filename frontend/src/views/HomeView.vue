@@ -27,7 +27,7 @@ export default {
   <!-- <WorkflowSection /> -->
   <!-- <FAQSection /> -->
   <!-- <ContactsSection /> -->
-  <!-- <STASection /> -->
+  <STASection />
 </template>
 
 <style scoped></style>
