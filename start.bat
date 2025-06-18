@@ -1,6 +1,9 @@
 @echo off
-REM Запуск FastAPI сервера с Uvicorn
+cd frontend/
+echo Запускаем фронтенд...
+start "" "cmd" /k "npm run dev"
+
+cd ..
 call venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --reload
-pause
+echo Запускаем бэкенд...
+start "" "cmd" /k "uvicorn main:app --reload"

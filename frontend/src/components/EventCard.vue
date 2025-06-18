@@ -69,6 +69,7 @@ export default {
   gap: 5px;
 
   width: 275px;
+  padding-bottom: 10px;
   max-height: max-content;
   border-radius: 14px;
 
