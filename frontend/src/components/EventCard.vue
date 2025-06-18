@@ -3,7 +3,7 @@
     <img :src="cover" alt="" class="event-card-image" />
     <div class="event-card__header">
       <p class="event-card__type">{{ type }}</p>
-      <h3 class="event-card__title">{{ name }}</h3>
+      <h3 class="event-card__title">{{ title }}</h3>
     </div>
     <div class="event-card__info">
       <div class="event-card__info-date label">
@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="event-card__btn">
-      <a href="" class="event-card__btn-link">Подробнее</a>
+      <a :href="'/event/' + id" class="event-card__btn-link">Подробнее</a>
       <IconArrow direction="down" class="event-card__btn-icon" />
     </div>
   </div>
@@ -40,13 +40,13 @@ export default {
     IconWatches,
   },
   props: {
+    id: { type: Number, required: true },
     type: { type: String, required: true },
-    cover: { type: Image, required: true },
-    name: { type: String, required: true },
+    cover: { type: String, required: true },
+    title: { type: String, required: true },
     date: { type: String, required: true },
     time: { type: String, required: true },
     location: { type: String, required: true },
-    // link: { type: String, required: true },
   },
 }
 </script>

@@ -6,9 +6,10 @@
         <div class="events__cards">
           <EventCard
             v-for="event in events"
+            :id="event.id"
             :type="event.type"
             :cover="event.cover"
-            :name="event.name"
+            :title="event.title"
             :date="event.date"
             :time="event.time"
             :location="event.location"
@@ -30,6 +31,9 @@ import E6 from '@/assets/images/e6.png'
 import EventCard from '@/components/EventCard.vue'
 import EventFilter from '@/components/EventFilter.vue'
 import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+const API_BASE_URL = 'http://localhost:8000';
 
 export default {
   name: 'Events',
@@ -40,61 +44,11 @@ export default {
   setup() {
     const events = ref([])
 
-    const mockEvents = [
-      {
-        type: 'КИНО',
-        name: 'МАЛЬЧИК В ПОЛОСАТОЙ ПИЖАМЕ',
-        cover: E1,
-        date: '13 мая',
-        time: '18:00',
-        location: 'Р-217',
-      },
-      {
-        type: 'МАСТЕР-КЛАССЫ',
-        name: 'ВОЛШЕБНЫЕ ОТКРЫТКИ СВОИМИ РУКАМ',
-        cover: E2,
-        date: '20 февраля',
-        time: '15:00',
-        location: 'Р-044',
-      },
-      {
-        type: 'СПОРТ',
-        name: 'ЭСТАФЕТА',
-        cover: E3,
-        date: '03 мая',
-        time: '18:00',
-        location: 'Р-044',
-      },
-      {
-        type: 'МАСТЕР-КЛАССЫ',
-        name: 'ШНУРОМАНИЯ. СОЗДАЙ СВОЙ СТИЛЬНЫЙ РЕМЕШОК',
-        cover: E4,
-        date: '03 мая',
-        time: '15:00',
-        location: 'ул. Мира, 39',
-      },
-      {
-        type: 'ФЕСТИВАЛИ',
-        name: 'ВСЕЛЕННАЯ ИРИТ-РТФ',
-        cover: E5,
-        date: '03 мая',
-        time: '18:00',
-        location: 'Р-044',
-      },
-      {
-        type: 'ВИКТОРИНЫ',
-        name: 'НОВОГОДНИЙ КВИЗ',
-        cover: E6,
-        date: '03 мая',
-        time: '15:00',
-        location: 'Р-044',
-      },
-    ]
-
     const fetchEvents = async () => {
       try {
-        // TODO: Запрос к API !!!
-        events.value = mockEvents
+        const response = await axios.get(`${API_BASE_URL}/events`);
+        events.value = response.data;
+        console.log('Мероприятия загружены:', events.value);
       } catch (error) {
         console.error('Ошибка при загрузке мероприятий:', error)
       }

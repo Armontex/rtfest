@@ -6,7 +6,7 @@
         <Event
           :type="event.type"
           :cover="event.cover"
-          :name="event.name"
+          :title="event.title"
           :time="event.time"
           :descr="event.descr"
           :location="event.location"
@@ -20,7 +20,11 @@
 import E1 from '@/assets/images/e1.png'
 import Event from '@/components/Event.vue'
 import EventFilter from '@/components/EventFilter.vue'
+
 import { ref, onMounted } from 'vue'
+import axios from 'axios'
+
+const API_BASE_URL = 'http://localhost:8000'
 
 export default {
   name: 'EventView',
@@ -28,24 +32,21 @@ export default {
     Event,
     EventFilter,
   },
-  setup() {
+  props: {
+    id: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
     const event = ref({})
-
-    const mockEvent = {
-      type: 'Викторины',
-      name: 'Новогодний квиз',
-      cover: E1,
-      date: '13 мая',
-      time: '17 : 30',
-      location: 'Коворкинг (Р-044)',
-      descr:
-        'Все вокруг наполняется атмосферой приближающегося праздника, а это значит, что самое время для традиционного новогоднего мероприятия в формате квиза, в котором каждый сможет принять участие. Поэтому не упусти возможность зарядиться волшебным настроением в предверии Нового года\n\nС нетерпением ждем тебя: 23 декабря в 17:30 в коворкинге ИРИТ-РТФ (Р-044)\n\nСкорее собирай команду из 3-5 человек, запасайся новогодним настроением, мишурой и мандаринами, а также приходи в ярком праздничном костюме. Говорят, что за это будут дополнительные баллы ',
-    }
 
     const fetchEvents = async () => {
       try {
-        // TODO: Запрос к API !!!
-        event.value = mockEvent
+        console.log('ID:', props.id);
+        const response = await axios.get(`${API_BASE_URL}/event/${props.id}`)
+        event.value = response.data
+        console.log('Мероприятие загружено:', event.value);
       } catch (error) {
         console.error('Ошибка при загрузке мероприятий:', error)
       }
@@ -64,10 +65,10 @@ export default {
 
 <style scoped>
 .event__wrapper {
-    margin-top: 70px;
+  margin-top: 70px;
 }
 .event__components {
-    display: flex;
-    gap: 45px;
+  display: flex;
+  gap: 45px;
 }
 </style>
