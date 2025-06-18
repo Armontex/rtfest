@@ -76,10 +76,6 @@ export default {
     align-items: center;
   }
 
-  .hero__content {
-
-  }
-
   .hero__title {
     text-align: start;
     font-size: 32px;
