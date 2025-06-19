@@ -107,7 +107,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(275px, 100%), 1fr));
   width: 100%;
-  justify-items: start;
+  justify-items: center;
   gap: 30px;
 }
 
