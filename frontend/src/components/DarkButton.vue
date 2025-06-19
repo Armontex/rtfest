@@ -16,7 +16,8 @@ export default {
 </script>
 
 <style scoped>
-button:hover {
+button:hover,
+button:focus {
   background-color: var(--main-color);
 }
 </style>

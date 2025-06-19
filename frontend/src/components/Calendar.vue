@@ -51,14 +51,9 @@ export default {
     lastDayOfMonth() {
       return new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 0)
     },
-    // emptyDays() {
-    //   // Возвращаем массив пустых дней для отступов
-    //   const firstDayIndex = this.firstDayOfMonth.getDay() || 7 // Воскресенье = 0 -> 7
-    //   return Array.from({ length: firstDayIndex - 1 }, (_, i) => i)
-    // },
      emptyDays() {
-      const firstDayIndex = this.firstDayOfMonth.getDay() || 7; // Воскресенье = 0 -> 7
-      if (firstDayIndex === 1) return []; // Если месяц начинается с понедельника - пустых дней нет
+      const firstDayIndex = this.firstDayOfMonth.getDay() || 7;
+      if (firstDayIndex === 1) return [];
 
       const prevMonthLastDay = new Date(
         this.currentDate.getFullYear(),
@@ -66,7 +61,6 @@ export default {
         0
       ).getDate();
 
-      // Возвращаем последние (firstDayIndex - 1) дней предыдущего месяца
       const startDay = prevMonthLastDay - (firstDayIndex - 2);
       return Array.from({ length: firstDayIndex - 1 }, (_, i) => startDay + i);
     },
@@ -154,6 +148,13 @@ h2 {
   font-size: 16px;
   cursor: pointer;
   padding: 5px 10px;
+  transition: all 0.1s ease;
+}
+
+.header button:hover,
+.header button:focus {
+  background: #65b2da;
+  border-radius: 10px;
 }
 
 .days {

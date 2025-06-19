@@ -32,6 +32,8 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
+
+  cursor: pointer;
 }
 
 .checkbox__input {
@@ -41,6 +43,18 @@ export default {
   height: 16px;
   border: 1px solid #fff;
   border-radius: 100%;
+
+  cursor: pointer;
+}
+
+.checkbox__input:hover::before,
+.checkbox__input:focus::before {
+  content: '✓';
+  color: #000 !important;
+  position: absolute;
+  top: -2px;
+  left: 3px;
+  font-size: 16px;
 }
 
 .checkbox__input:checked::before {

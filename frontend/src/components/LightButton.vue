@@ -20,7 +20,8 @@ button {
   background-color: var(--main-color);
 }
 
-button:hover {
+button:hover,
+button:focus {
   background-color: transparent;
 }
 </style>

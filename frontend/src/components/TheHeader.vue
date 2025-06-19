@@ -64,6 +64,31 @@ export default {
   gap: 1rem;
 }
 
+.header__link {
+  position: relative;
+}
+
+.header__link:hover, 
+.header__link:focus {
+  color: var(--main-color);
+}
+
+.header__link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--main-color);
+  transition: width 0.3s ease;
+}
+
+.header__link:hover::after,
+.header__link:focus::after {
+  width: 100%;
+}
+
 
 @media (min-width: 768px) {
   .header__wrapper {
@@ -85,25 +110,5 @@ export default {
   }
 }
 
-/*
 
-.header__link:hover {
-  color: var(--main-color);
-}
-
-.header__link::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--main-color);
-  transition: width 0.3s ease;
-}
-
-.header__link:hover::after {
-  width: 100%;
-}
-*/
 </style>
