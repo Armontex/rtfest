@@ -1,5 +1,5 @@
 <template>
-  <button class="btn">
+  <button class="btn" @click="handleClick">
     <a :href="href" class="link">
       <span class="btn__text">{{ text }}</span>
     </a>
@@ -9,9 +9,15 @@
 <script>
 export default {
   props: {
-    text: { type: String, require: true },
+    text: { type: String, required: true },
     href: String,
   },
+  emits: ['click'],
+  methods: {
+    handleClick() {
+      this.$emit('click')
+    }
+  }
 }
 </script>
 

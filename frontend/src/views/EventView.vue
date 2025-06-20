@@ -20,6 +20,17 @@
           :location="event.location"
         />
       </div>
+      <div class="event__form">
+        <EmailInput 
+          class="event__form-item email" 
+          @update:email="email = $event"
+        />
+        <LightButton 
+          class="event__form-item button" 
+          text="Записаться"
+          @click="registerUser"
+        />
+      </div>
     </div>
   </main>
 </template>
@@ -28,6 +39,9 @@
 import EventMobile from '@/components/EventMobile.vue'
 import EventDesktop from '@/components/EventDesktop.vue'
 import EventFilter from '@/components/EventFilter.vue'
+
+import EmailInput from '@/components/EmailInput.vue'
+import LightButton from '@/components/LightButton.vue'
 
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
@@ -39,7 +53,9 @@ export default {
   components: {
     EventMobile,
     EventFilter,
-    EventDesktop
+    EventDesktop,
+    EmailInput,
+    LightButton
   },
   props: {
     id: {
@@ -49,6 +65,7 @@ export default {
   },
   setup(props) {
     const event = ref({})
+    const email = ref('')
 
     const fetchEvents = async () => {
       try {
@@ -61,12 +78,33 @@ export default {
       }
     }
 
+    const registerUser = async () => {
+      if (!email.value) {
+        alert('Пожалуйста, введите email')
+        return
+      }
+
+      try {
+        const response = await axios.post(`${API_BASE_URL}/register`, {
+          event_id: props.id,
+          email: email.value
+        })
+        console.log('Успешная регистрация:', response.data)
+        alert('Вы успешно зарегистрированы на мероприятие!')
+      } catch (error) {
+        console.error('Ошибка регистрации:', error)
+        alert('Произошла ошибка при регистрации. Попробуйте позже.')
+      }
+    }
+
     onMounted(() => {
       fetchEvents()
     })
 
     return {
       event,
+      email,
+      registerUser
     }
   },
 }
@@ -78,6 +116,9 @@ export default {
 }
 
 .event__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
   margin-top: 70px;
 }
 .event__components {
@@ -86,6 +127,17 @@ export default {
   align-items: center;
   gap: 50px;
 }
+
+.event__form {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.event__form-item {
+  flex: 1;
+}
+
 
 @media (min-width: 1024px) {
   .desktop {
@@ -98,6 +150,14 @@ export default {
 
   .event__components {
     align-items: start;
+  }
+
+  .event__form {
+    justify-content: start;
+  }
+
+  .event__form-item {
+    flex: unset;
   }
 }
 </style>
